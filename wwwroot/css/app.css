@@ -3,13 +3,13 @@
 }
 
 a, .btn-link {
-    color: #006bb7;
+    color: seagreen;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: black;
+    border-color: black;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -75,7 +75,7 @@ h1:focus {
         position: sticky;
         top: 0;
         height: env(safe-area-inset-top);
-        background-color: #f7f7f7;
+        background-color: blanchedalmond;
         width: 100%;
         z-index: 1;
     }
