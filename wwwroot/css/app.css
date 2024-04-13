@@ -68,6 +68,9 @@ h1:focus {
 .status-bar-safe-area {
     display: none;
 }
+img {
+    width: 60px
+}
 
 @supports (-webkit-touch-callout: none) {
     .status-bar-safe-area {

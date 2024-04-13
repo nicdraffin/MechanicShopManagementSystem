@@ -1,8 +1,80 @@
 ﻿@page "/customer"
 
-<h1>Customer Manager</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Desktop App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img class="Company_Logo" src="Assets/auto-yyc-mechanic-high-resolution-logo-black-transparent.png" />
+        <h1>Customer Management</h1>
+    </header>
+    <main>
+        <div id="content">
+            <div class="add_customer_section">
+                <form id="add_customer_form">
+                    <p>Customer ID : </p>
+                    <input type="text" id="IDInput">
+                    <p>First Name : </p>
+                    <input type="text" id="nameInput">
+                    <p>Last Name : </p>
+                    <input type="text" id="nameInput">
+                    <p>Contact number : </p>
+                    <input type="text" id="ContactInput">
+                    <p>Email: </p>
+                    <input type="text" id="EmailInput">
 
-<p>Add / Delete / Edit Customers in the Database</p>
+                    <input type="submit" value="Add">
+
+                </form>
+            </div>
+            <div class="delete_customer_section">
+                <form id="delete_customer_form">
+                    <p>Customer ID : </p>
+                    <input type="text" id="IDInput">
+                    <p>First Name : </p>
+                    <input type="text" id="nameInput">
+                    <p>Last Name : </p>
+                    <input type="text" id="nameInput">
+                    <p>Contact number : </p>
+                    <input type="text" id="ContactInput">
+                    <p>Email: </p>
+                    <input type="text" id="EmailInput">
+
+                    <input type="submit" value="Search"> <input type="submit" value="Delete">
+
+                </form>
+            </div>
+            <div class="update_customer_section">
+                <form>
+                    <p>Customer ID: </p>
+                    <input type="text" id="IDInput">
+                    <p>First Name : </p>
+                    <input type="text" id="nameInput">
+                    <p>Last Name : </p>
+                    <input type="text" id="nameInput">
+                    <p>Contact number : </p>
+                    <input type="text" id="ContactInput">
+                    <p>Email: </p>
+                    <input type="text" id="EmailInput">
+
+                    <input type="submit" value="Search"> <input type="submit" value="Modify">
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
 
 
 
