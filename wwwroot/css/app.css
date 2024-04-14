@@ -68,8 +68,45 @@ h1:focus {
 .status-bar-safe-area {
     display: none;
 }
-img {
-    width: 60px
+header {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.Company_Logo {
+    height: auto;
+    width: 100px;
+}
+
+main {
+    padding: 20px;
+}
+
+body,
+h1,
+p,
+form,
+input {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    form p {
+        margin-bottom: 5px;
+    }
+
+form {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.add_customer_section,
+.delete_customer_section,
+.update_customer_section {
+    margin-bottom: 5px;
 }
 
 @supports (-webkit-touch-callout: none) {
