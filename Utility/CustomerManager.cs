@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MechanicAPP_OOP2.Utility
+/* namespace MechanicAPP_OOP2.Utility
 {
     
     public class CustomerService
@@ -13,7 +13,7 @@ namespace MechanicAPP_OOP2.Utility
         private List<Customer> customers = new List<Customer>();
 
         public void loadCustomersFromFile()
-    {
+        {
         string CUSTOMER_TXT = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:\\Users\\wchri\\source\\repos\\MechanicShopManagementSystem\\Utility\\customers.txt");
         string[] lines = File.ReadAllLines(CUSTOMER_TXT);
         foreach (string line in File.ReadLines(CUSTOMER_TXT))
@@ -28,7 +28,7 @@ namespace MechanicAPP_OOP2.Utility
             customers.Add(new Customer(id, firstName, lastName, contact, email));
             
         }
-    }
+        }
         public void saveCustomersToFile()
         {
             string CUSTOMER_TXT = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:\\Users\\wchri\\source\\repos\\MechanicShopManagementSystem\\Utility\\customers.txt");
@@ -101,4 +101,4 @@ namespace MechanicAPP_OOP2.Utility
 
        
     }
-}
+} */

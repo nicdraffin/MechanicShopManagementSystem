@@ -1,83 +1,36 @@
-﻿@page "/Customer Managemnt"
+﻿@page "/customer"
 
+<h3 style="text-align:center; margin-bottom: 20px;">Register Customer</h3>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Desktop App</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <img class="Company_Logo" src="Assets/auto-yyc-mechanic-high-resolution-logo-black-transparent.png" />
-        <h3>Customers</h3>
-        <h6>Add</h6>
-        <h6>Delete</h6>
-        <h6>Modify</h6>
-    </header>
-    <main>
-        <div id="content">
-            <div class="add_customer_section">
-                <form id="add_customer_form" @onsubmit="AddCustomer">
-                    <p>Customer ID : </p>
-                    <input type="text" @bind="customerId">
-                    <p>First Name : </p>
-                    <input type="text" @bind="firstName">
-                    <p>Last Name : </p>
-                    <input type="text" @bind="lastName">
-                    <p>Contact number : </p>
-                    <input type="text" @bind="contactNumber">
-                    <p>Email: </p>
-                    <input type="text" @bind="email">
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="id" style="margin-bottom: 5px;">Customer ID:</label>
+    <input type="text" name="id" id="id" @bind="customerId" style="width: 100%; padding: 5px;">
+</div>
 
-                    <button type="submit" class="add_btn" >Add</button>
+<div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
+    <div style="flex: 1;"></div>
+</div>
 
-                </form>
-            </div>
-            <div class="delete_customer_section">
-                <form id="delete_customer_form">
-                    <p>Customer ID : </p>
-                    <input type="text" id="IDInput">
-                    <p>First Name : </p>
-                    <input type="text" id="nameInput">
-                    <p>Last Name : </p>
-                    <input type="text" id="nameInput">
-                    <p>Contact number : </p>
-                    <input type="text" id="ContactInput">
-                    <p>Email: </p>
-                    <input type="text" id="EmailInput">
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="firstname" style="margin-bottom: 5px;">First Name:</label>
+    <input type="text" name="firstname" id="firstname" @bind="firstName" style="width: 100%; padding: 5px;">
+</div>
 
-                    <input type="submit" value="Search"> <input type="submit" value="Delete">
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="lastname" style="margin-bottom: 5px;">Last Name:</label>
+    <input type="text" name="lastname" id="lastname" @bind="lastName" style="width: 100%; padding: 5px;">
+</div>
 
-                </form>
-            </div>
-            <div class="update_customer_section">
-                <form>
-                    <p>Customer ID: </p>
-                    <input type="text" id="IDInput">
-                    <p>First Name : </p>
-                    <input type="text" id="nameInput">
-                    <p>Last Name : </p>
-                    <input type="text" id="nameInput">
-                    <p>Contact number : </p>
-                    <input type="text" id="ContactInput">
-                    <p>Email: </p>
-                    <input type="text" id="EmailInput">
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="phone" style="margin-bottom: 5px;">Phone Number:</label>
+    <input type="text" name="phone" id="phone" @bind="contactNumber" style="width: 100%; padding: 5px;">
+</div>
 
-                    <input type="submit" value="Search"> <input type="submit" value="Modify">
-                </form>
-            </div>
-            
-        </div>
-    </main>
-    <footer>
-        
-    </footer>
-    <script src="script.js"></script>
-</body>
-</html>
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="email" style="margin-bottom: 5px;">Email:</label>
+    <input type="text" name="email" id="email" @bind="email" style="width: 100%; padding: 5px;">
+</div>
+<button type="button" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Register</button>
 
 @code {
 private List<Customer> customers = new List<Customer>();
