@@ -1,4 +1,5 @@
-﻿@page "/customer"
+﻿@page "/Customer Managemnt"
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,19 +20,19 @@
     <main>
         <div id="content">
             <div class="add_customer_section">
-                <form id="add_customer_form">
+                <form id="add_customer_form" @onsubmit="AddCustomer">
                     <p>Customer ID : </p>
-                    <input type="text" id="IDInput">
+                    <input type="text" @bind="customerId">
                     <p>First Name : </p>
-                    <input type="text" id="nameInput">
+                    <input type="text" @bind="firstName">
                     <p>Last Name : </p>
-                    <input type="text" id="nameInput">
+                    <input type="text" @bind="lastName">
                     <p>Contact number : </p>
-                    <input type="text" id="ContactInput">
+                    <input type="text" @bind="contactNumber">
                     <p>Email: </p>
-                    <input type="text" id="EmailInput">
+                    <input type="text" @bind="email">
 
-                    <input type="submit" value="Add">
+                    <button type="submit" class="add_btn" >Add</button>
 
                 </form>
             </div>
@@ -68,6 +69,7 @@
                     <input type="submit" value="Search"> <input type="submit" value="Modify">
                 </form>
             </div>
+            
         </div>
     </main>
     <footer>
@@ -77,10 +79,16 @@
 </body>
 </html>
 
-
-
-
-
 @code {
+private List<Customer> customers = new List<Customer>();
+    
+    string customerId;
+    string firstName;
+    string lastName;
+    string contactNumber;
+    string email;
 
+    
 }
+
+
