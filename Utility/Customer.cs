@@ -4,31 +4,47 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite;
 
 namespace MechanicAPP_OOP2.Utility
 {
-    
     public class Customer
     {
+        [PrimaryKey, AutoIncrement]
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ContactNumber { get; set; }
         public string Email { get; set; }
+        public Customer Clone() => MemberwiseClone() as Customer;
 
-        public Customer(string id, string firstName, string lastName, string contactNumber, string email)
+        public (bool IsValid, string? ErrorMessage) Validate()
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            ContactNumber = contactNumber;
-            Email = email;
-        }
-        public override string ToString()
-        {
-            return $"Customer ID: {Id}, First Name: {FirstName}, Last Name: {LastName}, Contact Number: {ContactNumber}, Email: {Email}";
+            if(string.IsNullOrWhiteSpace(Id))
+            {
+                return (false, $"{nameof(Id)} is required.");
+            }
+            else if(string.IsNullOrWhiteSpace(FirstName))
+            {
+                return (false, $"{nameof(FirstName)} is required.");
+            }
+           
+            else if(string.IsNullOrWhiteSpace(LastName))
+            {
+                return (false, $"{nameof(LastName)} is required.");
+            }
+            
+            else if (string.IsNullOrWhiteSpace(ContactNumber))
+            {
+                return (false, $"{nameof(ContactNumber)} is required.");
+            }
+            
+            else if (string.IsNullOrWhiteSpace(Email))
+            {
+                return (false, $"{nameof(Email)} is required.");
+            }
+
+            return (true, null);
         }
     }
-
-
 }
