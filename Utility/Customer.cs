@@ -24,10 +24,6 @@ namespace MechanicAPP_OOP2.Utility
             ContactNumber = contactNumber;
             Email = email;
         }
-        public override string ToString()
-        {
-            return $"Customer ID: {Id}, First Name: {FirstName}, Last Name: {LastName}, Contact Number: {ContactNumber}, Email: {Email}";
-        }
     }
 
 

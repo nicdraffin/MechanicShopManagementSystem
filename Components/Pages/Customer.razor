@@ -1,4 +1,7 @@
 ﻿@page "/Customer Managemnt"
+@using MechanicAPP_OOP2.Utility
+@inject CustomerService customerService
+@inject Customer customer
 
 
 <!DOCTYPE html>
@@ -80,15 +83,14 @@
 </html>
 
 @code {
-private List<Customer> customers = new List<Customer>();
-    
-    string customerId;
-    string firstName;
-    string lastName;
-    string contactNumber;
-    string email;
+    private string id;
+    private string firstName;
+    private string lastName;
+    private string contactNumber;
+    private string email;
 
     
+
 }
 
 
