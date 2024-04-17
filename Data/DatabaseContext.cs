@@ -1,17 +1,17 @@
-﻿using MechanicAPP_OOP2.Components.Pages;
-using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite;
+
 
 namespace MechanicAPP_OOP2.Data
 {
     public class DatabaseContext : IAsyncDisposable
     {
-        private const string DbName = "MyDatabase.db3";
+        private const string DbName = "Customer.db";
         private static string DbPath => Path.Combine(FileSystem.AppDataDirectory, DbName);
 
         private SQLiteAsyncConnection _connection;

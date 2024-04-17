@@ -1,28 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using MechanicAPP_OOP2.Data;
 using MechanicAPP_OOP2.Model;
 
 namespace Utility
 {
-
-    public partial class ProductsViewModel : ObservableObject
+    public partial class CustomerViewModel : ObservableObject
     {
         private readonly DatabaseContext _context;
 
-        public ProductsViewModel(DatabaseContext context)
+        public CustomerViewModel(DatabaseContext context)
         {
             _context = context;
         }
 
         [ObservableProperty]
-        private ObservableCollection<Customer> _products = new();
+        private ObservableCollection<Customer> _customers = new();
 
         [ObservableProperty]
-        private Customer _operatingProduct = new();
+        private Customer _operatingCustomer = new();
 
         [ObservableProperty]
         private bool _isBusy;
@@ -30,83 +27,84 @@ namespace Utility
         [ObservableProperty]
         private string _busyText;
 
-        public async Task LoadProductsAsync()
+        public async Task LoadcustomersAsync()
         {
             await ExecuteAsync(async () =>
             {
-                var products = await _context.GetAllAsync<Customer>();
-                if (products is not null && products.Any())
+                var customers = await _context.GetAllAsync<Customer>();
+                if (customers is not null && customers.Any())
                 {
-                    Products ??= new ObservableCollection<Customer>();
+                    Customers ??= new ObservableCollection<Customer>();
 
-                    foreach (var product in products)
+                    foreach (var customer in customers)
                     {
-                        Products.Add(product);
+                        Customers.Add(customer);
                     }
                 }
-            }, "Fetching products...");
+            }, "Fetching customers...");
         }
 
         [RelayCommand]
-        private void SetOperatingProduct(Customer? product) => OperatingProduct = product ?? new();
+        private void SetOperatingCustomer(Customer? customer) => OperatingCustomer = customer ?? new();
 
         [RelayCommand]
-        private async Task SaveProductAsync()
+        public async Task SavecustomerAsync()
         {
-            if (OperatingProduct is null)
+            if (OperatingCustomer is null)
                 return;
 
-            var (isValid, errorMessage) = OperatingProduct.Validate();
+            var (isValid, errorMessage) = OperatingCustomer.Validate();
             if (!isValid)
             {
                 await Shell.Current.DisplayAlert("Validation Error", errorMessage, "OK");
                 return;
             }
 
-            var busyText = OperatingProduct.Id == 0 ? "Creating product..." : "Updating product...";
+            var busyText = string.IsNullOrWhiteSpace(OperatingCustomer.Id) ? "Creating customer..." : "Updating customer...";
             await ExecuteAsync(async () =>
             {
-                if (OperatingProduct.Id == 0)
+                if (string.IsNullOrWhiteSpace(OperatingCustomer.Id))
                 {
-                    // Create product
-                    await _context.AddItemAsync<Customer>(OperatingProduct);
-                    Products.Add(OperatingProduct);
+                    await _context.AddItemAsync<Customer>(OperatingCustomer);
+                    Customers.Add(OperatingCustomer);
                 }
                 else
                 {
-                    // Update product
-                    if (await _context.UpdateItemAsync<Customer>(OperatingProduct))
+                    // Update customer
+                    if (await _context.UpdateItemAsync<Customer>(OperatingCustomer))
                     {
                         var productCopy = OperatingProduct.Clone();
+
                         var index = Products.IndexOf(OperatingProduct);
                         Products.RemoveAt(index);
+
                         Products.Insert(index, productCopy);
                     }
                     else
                     {
-                        await Shell.Current.DisplayAlert("Error", "Product updation error", "OK");
+                        await Shell.Current.DisplayAlert("Error", "Customer updation error", "OK");
                         return;
                     }
                 }
-                SetOperatingProductCommand.Execute(new());
+                SetOperatingCustomerCommand.Execute(new());
             }, busyText);
         }
 
         [RelayCommand]
-        private async Task DeleteProductAsync(int id)
+        private async Task DeleteCustomerAsync(string id)
         {
             await ExecuteAsync(async () =>
             {
                 if (await _context.DeleteItemByKeyAsync<Customer>(id))
                 {
-                    var product = Products.FirstOrDefault(p => p.Id == id);
-                    Products.Remove(product);
+                    var customer = Customers.FirstOrDefault(p => p.Id == id);
+                    Customers.Remove(customer);
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Delete Error", "Product was not deleted", "OK");
+                    await Shell.Current.DisplayAlert("Delete Error", "Customer was not deleted", "OK");
                 }
-            }, "Deleting product...");
+            }, "Deleting customer...");
         }
 
         private async Task ExecuteAsync(Func<Task> operation, string? busyText = null)
