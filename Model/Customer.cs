@@ -23,11 +23,7 @@ namespace MechanicAPP_OOP2.Model
 
         public (bool IsValid, string? ErrorMessage) Validate()
         {
-            if (string.IsNullOrWhiteSpace(Id))
-            {
-                return (false, $"{nameof(Id)} is required.");
-            }
-            else if (string.IsNullOrWhiteSpace(FirstName))
+            if (string.IsNullOrWhiteSpace(FirstName))
             {
                 return (false, $"{nameof(FirstName)} is required.");
             }
