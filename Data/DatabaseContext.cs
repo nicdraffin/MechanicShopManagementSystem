@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using MechanicAPP_OOP2.Components.Pages;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,4 +85,40 @@ namespace MechanicAPP_OOP2.Data
             await _connection?.CloseAsync();
         }
     }
+    /* public class DatabaseContext
+    {
+        private const string DbName = "MyDatabase.db3";
+        private readonly SQLiteAsyncConnection _connection;
+
+        public DatabaseContext()
+        {
+            _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DbName));
+            _connection.CreateTableAsync<Customer>();
+        }
+
+        public async Task<List<Customer>> GetCustomers()
+        {
+            return await _connection.Table<Customer>().ToListAsync();
+        }
+
+        public async Task<Customer> GetByID(int id)
+        {
+            return await _connection.Table<Customer>().Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+        }
+
+        public async Task Create(Customer customer)
+        {
+            await _connection.InsertAsync(customer);
+        }
+
+        public async Task Update(Customer customer)
+        {
+            await _connection.UpdateAsync(customer);
+        }
+
+        public async Task Delete(Customer customer)
+        {
+            await _connection.DeleteAsync(customer);
+        }
+    } */
 }

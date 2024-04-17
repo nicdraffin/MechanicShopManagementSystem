@@ -1,5 +1,6 @@
 ﻿using MechanicAPP_OOP2.Data;
 using Microsoft.Extensions.Logging;
+using Utility;
 
 namespace MechanicAPP_OOP2
 {
@@ -20,8 +21,8 @@ namespace MechanicAPP_OOP2
 #if DEBUG
     		builder.Services.AddBlazorWebViewDeveloperTools();
             builder.Services.AddSingleton<DatabaseContext>();
+            builder.Services.AddSingleton<ProductsViewModel>();
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<ILogger>();
     		builder.Logging.AddDebug();
 #endif
 

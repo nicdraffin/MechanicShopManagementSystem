@@ -1,10 +1,87 @@
 ﻿@page "/manager"
+@using MechanicAPP_OOP2.Data;
+@using Utility;
+@inject ProductsViewModel Utility;
 
 <h2 style="text-align:center; margin-bottom: 20px;">Manage Customer</h2>
 
 <h4 style="text-align:center; margin-bottom: 14px;">Add / Edit / Delete Customers</h4>
 
+@if (Utility.Products == null || Utility.Products.Count() == 0)
+{
+    <div class="text-center p-3">
+        <h3>No Products Found</h3>
+        <p>Try creating a product from the form below.</p>
+    </div>
+}
+@if (Utility.IsBusy)
+{
+    <div class="text-center">
+        <p>Loading...</p>
+        <p>@Utility.BusyText</p>
+    </div>
+}
 
+<h1 class="text-center">Products</h1>
+
+@if (Utility.Products.Any())
+{
+    <div>
+        @foreach (var customer in Utility.Products)
+        {
+            <div style="background-color: #ECECEC; padding: 5px;">
+                <div>
+                    <span>@customer.FirstName</span>
+                    <button @onclick="() => Utility.SaveProductCommand.Execute (customer)">Edit</button>
+                </div>
+                <div>
+                    <span> @customer.LastName</span>
+                    <button @onclick="() => Utility.SaveProductCommand.Execute (customer.Id)">Del</button>
+                </div>
+             
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h2>No Products Found</h2>
+        <p>Try creating a product from the form below.</p>
+    </div>
+}
+<div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
+    <div style="flex: 1;"></div>
+</div>
+
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="firstname" style="margin-bottom: 5px;">First Name:</label>
+    <input type="text" name="firstname" id="firstname" @bind="Utility.OperatingProduct.FirstName" style="width: 100%; padding: 5px;">
+</div>
+
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="lastname" style="margin-bottom: 5px;">Last Name:</label>
+    <input type="text" name="lastname" id="lastname" @bind="Utility.OperatingProduct.LastName" style="width: 100%; padding: 5px;">
+</div>
+
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="phone" style="margin-bottom: 5px;">Phone Number:</label>
+    <input type="text" name="phone" id="phone" @bind="Utility.OperatingProduct.ContactNumber" style="width: 100%; padding: 5px;">
+</div>
+
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <label for="email" style="margin-bottom: 5px;">Email:</label>
+    <input type="text" name="email" id="email" @bind="Utility.OperatingProduct.Email" style="width: 100%; padding: 5px;">
+</div>
+<button @onclick="Utility.SaveProductCommand.Execute" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Register</button>
+@if (Utility.OperatingProduct.Id == 0)
+{
+    <text>Create Product</text>
+}
+else
+{
+    <text>Update Product</text>
+}
 @code {
     
 }
