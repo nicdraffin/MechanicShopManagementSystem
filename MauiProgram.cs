@@ -1,4 +1,5 @@
-﻿using MechanicAPP_OOP2.Data;
+﻿using MechanicAPP_OOP2.Components.Pages;
+using MechanicAPP_OOP2.Data;
 using Microsoft.Extensions.Logging;
 using Utility;
 
@@ -10,21 +11,22 @@ namespace MechanicAPP_OOP2
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                });
+                .UseMauiApp<App>();
 
             builder.Services.AddMauiBlazorWebView();
 
-#if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+
+    #if DEBUG
+            builder.Logging.AddDebug();
+    #endif
+
             builder.Services.AddSingleton<DatabaseContext>();
+
             builder.Services.AddSingleton<ProductsViewModel>();
-            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<ProductsViewModel>();
     		builder.Logging.AddDebug();
-#endif
+            builder.Services.AddSingleton<MainPage>();
+
 
             return builder.Build();
         }

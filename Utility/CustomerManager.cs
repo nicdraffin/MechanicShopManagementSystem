@@ -126,5 +126,5 @@ namespace Utility
                 BusyText = "Processing...";
             }
         }
-    } 
-} 
+    }
+}
