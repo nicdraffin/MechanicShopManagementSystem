@@ -8,24 +8,13 @@ using SQLite;
 
 namespace MechanicAPP_OOP2.Model
 {
-    [Table("customer")]
     public class Customer
     {
         [PrimaryKey, AutoIncrement]
-
-        [Column("id")]
         public int Id { get; set; }
-
-        [Column("customer_name")]
         public string FirstName { get; set; }
-
-        [Column("customer_lastname")]
         public string LastName { get; set; }
-
-        [Column("mobilephone")]
         public string ContactNumber { get; set; }
-
-        [Column("email")]
         public string Email { get; set; }
 
 
@@ -34,11 +23,8 @@ namespace MechanicAPP_OOP2.Model
 
         public (bool IsValid, string? ErrorMessage) Validate()
         {
-            if (Id == 0)
-            {
-                return (false, $"{nameof(Id)} is required.");
-            }
-            else if (string.IsNullOrWhiteSpace(FirstName))
+            
+            if (string.IsNullOrWhiteSpace(FirstName))
             {
                 return (false, $"{nameof(FirstName)} is required.");
             }
