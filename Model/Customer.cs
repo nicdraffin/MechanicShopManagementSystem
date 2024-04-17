@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace MechanicAPP_OOP2.Utility
+namespace MechanicAPP_OOP2.Model
 {
     public class Customer
     {
@@ -16,29 +16,32 @@ namespace MechanicAPP_OOP2.Utility
         public string LastName { get; set; }
         public string ContactNumber { get; set; }
         public string Email { get; set; }
+
+
         public Customer Clone() => MemberwiseClone() as Customer;
+
 
         public (bool IsValid, string? ErrorMessage) Validate()
         {
-            if(string.IsNullOrWhiteSpace(Id))
+            if (string.IsNullOrWhiteSpace(Id))
             {
                 return (false, $"{nameof(Id)} is required.");
             }
-            else if(string.IsNullOrWhiteSpace(FirstName))
+            else if (string.IsNullOrWhiteSpace(FirstName))
             {
                 return (false, $"{nameof(FirstName)} is required.");
             }
-           
-            else if(string.IsNullOrWhiteSpace(LastName))
+
+            else if (string.IsNullOrWhiteSpace(LastName))
             {
                 return (false, $"{nameof(LastName)} is required.");
             }
-            
+
             else if (string.IsNullOrWhiteSpace(ContactNumber))
             {
                 return (false, $"{nameof(ContactNumber)} is required.");
             }
-            
+
             else if (string.IsNullOrWhiteSpace(Email))
             {
                 return (false, $"{nameof(Email)} is required.");

@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MechanicAPP_OOP2.Utility
+namespace MechanicAPP_OOP2.Data
 {
     public class DatabaseContext : IAsyncDisposable
     {
@@ -15,8 +15,8 @@ namespace MechanicAPP_OOP2.Utility
 
         private SQLiteAsyncConnection _connection;
         private SQLiteAsyncConnection Database =>
-            (_connection ??= new SQLiteAsyncConnection(DbPath,
-                SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache));
+            _connection ??= new SQLiteAsyncConnection(DbPath,
+                SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
 
         private async Task CreateTableIfNotExists<TTable>() where TTable : class, new()
         {
