@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using MechanicAPP_OOP2.Data;
 using MechanicAPP_OOP2.Model;
 
@@ -50,7 +48,7 @@ namespace MechanicAPP_OOP2.Utility
         private void SetOperatingCustomer(Customer? customer) => OperatingCustomer = customer ?? new();
 
         [RelayCommand]
-        private async Task SavecustomerAsync()
+        public async Task SavecustomerAsync()
         {
             if (OperatingCustomer is null)
                 return;
