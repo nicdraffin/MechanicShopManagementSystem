@@ -21,8 +21,8 @@ namespace MechanicAPP_OOP2
     #endif
 
             builder.Services.AddSingleton<DatabaseContext>();
-            builder.Services.AddSingleton<CustomerManager>();
-            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<CustomersViewModel>();
+            builder.Services.AddSingleton<Customer>();
 
             return builder.Build();
         }

@@ -1,7 +1,7 @@
 ﻿@page "/customer"
 @using MechanicAPP_OOP2.Data;
 @using Utility;
-@inject ProductsViewModel Utility;
+@inject CustomersViewModel Utility;
 
 
 <h3 style="text-align:center; margin-bottom: 20px;">Register Customer</h3>
@@ -12,36 +12,29 @@
 
 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
     <label for="firstname" style="margin-bottom: 5px;">First Name:</label>
-    <input type="text" name="firstname" id="firstname" @bind="Utility.OperatingProduct.FirstName" style="width: 100%; padding: 5px;">
+    <input type="text" name="firstname" id="firstname" @bind="Utility.OperatingCustomer.FirstName" style="width: 100%; padding: 5px;">
 </div>
 
 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
     <label for="lastname" style="margin-bottom: 5px;">Last Name:</label>
-    <input type="text" name="lastname" id="lastname" @bind="Utility.OperatingProduct.LastName" style="width: 100%; padding: 5px;">
+    <input type="text" name="lastname" id="lastname" @bind="Utility.OperatingCustomer.LastName" style="width: 100%; padding: 5px;">
 </div>
 
 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
     <label for="phone" style="margin-bottom: 5px;">Phone Number:</label>
-    <input type="text" name="phone" id="phone" @bind="Utility.OperatingProduct.ContactNumber" style="width: 100%; padding: 5px;">
+    <input type="text" name="phone" id="phone" @bind="Utility.OperatingCustomer.ContactNumber" style="width: 100%; padding: 5px;">
 </div>
 
 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
     <label for="email" style="margin-bottom: 5px;">Email:</label>
-    <input type="text" name="email" id="email" @bind="Utility.OperatingProduct.Email" style="width: 100%; padding: 5px;">
+    <input type="text" name="email" id="email" @bind="Utility.OperatingCustomer.Email" style="width: 100%; padding: 5px;">
 </div>
-<button @onclick="Utility.SaveProductCommand.Execute" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Register</button>
-    @if (Utility.OperatingProduct.Id == 0)
-    {
-        <text>Create Product</text>
-    }
-    else
-    {
-        <text>Update Product</text>
-    } 
+<button @onclick="Utility.SavecustomerCommand.Execute" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Register</button>
+   
 
 
 @code {
-
+    
 }
 
 

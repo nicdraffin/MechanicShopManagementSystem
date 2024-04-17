@@ -6,11 +6,11 @@ using MechanicAPP_OOP2.Model;
 
 namespace Utility
 {
-    public partial class CustomerViewModel : ObservableObject
+    public partial class CustomersViewModel : ObservableObject
     {
         private readonly DatabaseContext _context;
 
-        public CustomerViewModel(DatabaseContext context)
+        public CustomersViewModel(DatabaseContext context)
         {
             _context = context;
         }
@@ -45,7 +45,7 @@ namespace Utility
         }
 
         [RelayCommand]
-        private void SetOperatingCustomer(Customer? customer) => OperatingCustomer = customer ?? new();
+        private void SetOperatingCustomer(Customer customer) => OperatingCustomer = customer ?? new();
 
         [RelayCommand]
         public async Task SavecustomerAsync()
@@ -60,10 +60,10 @@ namespace Utility
                 return;
             }
 
-            var busyText = string.IsNullOrWhiteSpace(OperatingCustomer.Id) ? "Creating customer..." : "Updating customer...";
+            var busyText = OperatingCustomer.Id == 0 ? "Creating customer..." : "Updating customer...";
             await ExecuteAsync(async () =>
             {
-                if (string.IsNullOrWhiteSpace(OperatingCustomer.Id))
+                if (OperatingCustomer.Id == 0)
                 {
                     await _context.AddItemAsync<Customer>(OperatingCustomer);
                     Customers.Add(OperatingCustomer);
@@ -73,12 +73,12 @@ namespace Utility
                     // Update customer
                     if (await _context.UpdateItemAsync<Customer>(OperatingCustomer))
                     {
-                        var productCopy = OperatingProduct.Clone();
+                        var customerCopy = OperatingCustomer.Clone();
 
-                        var index = Products.IndexOf(OperatingProduct);
-                        Products.RemoveAt(index);
+                        var index = Customers.IndexOf(OperatingCustomer);
+                        Customers.RemoveAt(index);
 
-                        Products.Insert(index, productCopy);
+                        Customers.Insert(index, customerCopy);
                     }
                     else
                     {
@@ -91,7 +91,7 @@ namespace Utility
         }
 
         [RelayCommand]
-        private async Task DeleteCustomerAsync(string id)
+        private async Task DeleteCustomerAsync(int id)
         {
             await ExecuteAsync(async () =>
             {

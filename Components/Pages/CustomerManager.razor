@@ -1,87 +1,135 @@
 ﻿@page "/manager"
 @using MechanicAPP_OOP2.Data;
 @using Utility;
-@inject ProductsViewModel Utility;
+@inject CustomersViewModel Utility;
 
-<h2 style="text-align:center; margin-bottom: 20px;">Manage Customer</h2>
+<h2 class="title">Manage Customer</h2>
 
-<h4 style="text-align:center; margin-bottom: 14px;">Add / Edit / Delete Customers</h4>
-
-@if (Utility.Products == null || Utility.Products.Count() == 0)
-{
-    <div class="text-center p-3">
-        <h3>No Products Found</h3>
-        <p>Try creating a product from the form below.</p>
-    </div>
-}
 @if (Utility.IsBusy)
 {
-    <div class="text-center">
+    <div class="loading">
         <p>Loading...</p>
         <p>@Utility.BusyText</p>
     </div>
 }
 
-<h1 class="text-center">Products</h1>
+<h3 class="subtitle">Customers</h3>
 
-@if (Utility.Products.Any())
+@if (Utility.Customers.Any())
 {
-    <div>
-        @foreach (var customer in Utility.Products)
+    <div class="customer-container">
+        @foreach (var customer in Utility.Customers)
         {
-            <div style="background-color: #ECECEC; padding: 5px;">
-                <div>
+            <div class="customer-card">
+                <div class="customer-info">
                     <span>@customer.FirstName</span>
-                    <button @onclick="() => Utility.SaveProductCommand.Execute (customer)">Edit</button>
+                    <span>@customer.LastName</span>
                 </div>
-                <div>
-                    <span> @customer.LastName</span>
-                    <button @onclick="() => Utility.SaveProductCommand.Execute (customer.Id)">Del</button>
+                <div class="buttons">
+                    <button @onclick="() => Utility.SetOperatingCustomerCommand.Execute(customer)">Edit</button>
+                    <button @onclick="() => Utility.DeleteCustomerCommand.Execute(customer.Id)">Delete</button>
                 </div>
-             
             </div>
         }
     </div>
 }
 else
 {
-    <div class="text-center">
-        <h2>No Products Found</h2>
-        <p>Try creating a product from the form below.</p>
+    <div class="no-customers">
+        <h2>No Customers Found</h2>
+        <p>Try creating a Customer from the form below.</p>
     </div>
 }
-<div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
-    <div style="flex: 1;"></div>
+
+<h3 class="subtitle">Register Customer</h3>
+
+<div class="form-container">
+    <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <input type="text" name="firstname" id="firstname" @bind="Utility.OperatingCustomer.FirstName">
+    </div>
+
+    <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" name="lastname" id="lastname" @bind="Utility.OperatingCustomer.LastName">
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" name="phone" id="phone" @bind="Utility.OperatingCustomer.ContactNumber">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" @bind="Utility.OperatingCustomer.Email">
+    </div>
+    <button @onclick="Utility.SavecustomerCommand.Execute" class="register-button">Register</button>
 </div>
 
-<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-    <label for="firstname" style="margin-bottom: 5px;">First Name:</label>
-    <input type="text" name="firstname" id="firstname" @bind="Utility.OperatingProduct.FirstName" style="width: 100%; padding: 5px;">
-</div>
+<style>
+    /* Title and subtitle styling */
+    .title, .subtitle {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-    <label for="lastname" style="margin-bottom: 5px;">Last Name:</label>
-    <input type="text" name="lastname" id="lastname" @bind="Utility.OperatingProduct.LastName" style="width: 100%; padding: 5px;">
-</div>
+    /* Loading text styling */
+    .loading {
+        text-align: center;
+    }
 
-<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-    <label for="phone" style="margin-bottom: 5px;">Phone Number:</label>
-    <input type="text" name="phone" id="phone" @bind="Utility.OperatingProduct.ContactNumber" style="width: 100%; padding: 5px;">
-</div>
+    /* Customer container styling */
+    .customer-container {
+        margin-bottom: 20px;
+    }
 
-<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-    <label for="email" style="margin-bottom: 5px;">Email:</label>
-    <input type="text" name="email" id="email" @bind="Utility.OperatingProduct.Email" style="width: 100%; padding: 5px;">
-</div>
-<button @onclick="Utility.SaveProductCommand.Execute" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Register</button>
-@if (Utility.OperatingProduct.Id == 0)
-{
-    <text>Create Product</text>
-}
-else
-{
-    <text>Update Product</text>
-}
-@code {
-    
-}
+    /* Customer card styling */
+    .customer-card {
+        background-color: #ECECEC;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Customer information styling */
+    .customer-info {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* Button styling */
+    .buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* Form container styling */
+    .form-container {
+        margin-bottom: 10px;
+    }
+
+    /* Form group styling */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+        /* Input styling */
+        .form-group input {
+            width: 100%;
+            padding: 5px;
+        }
+
+    /* Register button styling */
+    .register-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
